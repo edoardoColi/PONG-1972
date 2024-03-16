@@ -1,0 +1,37 @@
+version: '3.9'
+
+services:
+  web:
+    container_name: djangoBackEnd   #container name for the service
+    build: ./django    #use the Dockerfile in the specified directory
+    ports:
+      - "8000:8000"   #mapping port 'left' of the host to port 'right' of the container
+    volumes:
+      - ./django:/code:rw
+    env_file:
+      - .env
+    command: ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+    depends_on:
+      - postgres
+    networks:
+      - DockerNetwork   #ensure that hostname modifications made within a Docker container are accessible from other containers on the same Docker network
+
+  postgres:
+    container_name: postgreSQL   #container name for the service
+    image: postgres
+    volumes:
+      - ./data/db:/var/lib/postgresql/data:rw
+    env_file:
+      - .env
+    networks:
+      - DockerNetwork   #ensure that hostname modifications made within a Docker container are accessible from other containers on the same Docker network
+
+networks:
+  DockerNetwork:
+    driver: bridge
+            # Bridge (default): is the default and creates a private internal network on the host.
+            # Host: allows a container to share the network namespace with the host, effectively bypassing any network isolation.
+            # Overlay: is designed for multi-host deployments.
+            # Macvlan: enables containers to have their own unique MAC addresses and appear as separate physical devices on the network.
+            # Calico: is a popular networking and network security solution for container orchestration platforms like Kubernetes.
+            # ...
