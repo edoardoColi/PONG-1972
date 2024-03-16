@@ -33,3 +33,13 @@ Andremo a creare le seguenti app all'interno per la gestione dei vari componenti
 $ docker-compose run web django-admin startapp api
 ```
 poi dobbiamo aggiungerle l'app al progetto mettendo in *settings.py*, nel parametro INSTALLED_APPS `\<name\>.apps.\<name class in apps.py\>`
+
+# Models in app
+Vogliamo avere views piccole e la maggior parte della logica in models.py. I modelli sono astrazioni/regole dentro django per tabelle nel database.
+Nel momento in cui modifichiamo il database aggiungendo un nuovo modello dobbiamo fare
+```
+$ docker-compose run web python manage.py makemigrations
+# Sara mostrato che e' stato aggiunto un modello con il nome che abbiamo dato
+
+$ docker-compose run web python manage.py migrate
+```
