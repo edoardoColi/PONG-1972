@@ -21,6 +21,10 @@ logs:
 status:
 	docker ps -a
 
+gitadd: clean
+	sudo chown -R imacchina:imacchina *
+	git add .
+
 # Define a help target to display available Makefile targets
 help:
 	@echo "Check if file .env is present or if it was ignored by git"
