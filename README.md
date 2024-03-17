@@ -1,3 +1,5 @@
+# Pong in Django container
+Here are some general [references](https://www.atariarchives.org/bcc1/showpage.php?page=141)
 # Initial setup Django + PostgreSQL
 [Link di riferimento](https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/)  
 
@@ -56,7 +58,6 @@ Che utilizzeranno dei serializer per validare e gestire i dati in ingresso e usc
   
 Nel frontend app andremo ad usare Bootstrap, quindi inizializziamo il progetto con `npm init -y` e poi installiamo `npm install bootstrap@5`. npm andra' a gestire tutti i mobuli e ci permettera anche di installarne altri.  
 Babel utile per rendere il codice compatibile con piu' browsers.  
-
 Avremo una struttura del genere:
 ```
 project/
