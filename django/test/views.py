@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import generics     #ci permette di creare classi che ereditano da una generica API view
-from rest_framework import status     #ci permette di accesso allo stato http quando mandiamo indietra la risposta
+from rest_framework import status     #ci permette l'accesso allo stato http quando mandiamo indietra la risposta
 from .serializer import TestingRoomSerializer, CreateRoomSerializer
 from .models import TestingRoom
 from rest_framework.views  import APIView
