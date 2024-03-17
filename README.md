@@ -20,6 +20,12 @@ docker exec -it <container_id_or_name> bash
 ```
 e per entrare nel database del container `psql -U username -d your_database_name`
 se non trova il database cancellare la cartella relativa ai dati e ri-buildare, poi ri-usare makemigrations e migrate(avendo controllato the i valori in django/djangodocker/settings.py e .env sono presi e usati correttamente)
+
+Per aggungere un superuser con cui fare il login in /admin usiamo
+```
+$ docker-compose run web python manage.py createsuperuser
+$ docker-compose run web python manage.py changepassword <username>
+```
 # File permission
 Quanto si fa push meglio usare `sudo chown -R <user>:<group> /path/to/directory` perche' le cartelle condivise ai container possono prendere owner diversi(root) e non venire pushate
 
@@ -42,4 +48,35 @@ $ docker-compose run web python manage.py makemigrations
 # Sara mostrato che e' stato aggiunto un modello con il nome che abbiamo dato
 
 $ docker-compose run web python manage.py migrate
+```
+# Workflow
+Per gestire il database mettiamo modelli in app api/models.py  
+Per le risposte in base agli endpoint facciamo delle classi in app api/views.py  
+Che utilizzeranno dei serializer per validare e gestire i dati in ingresso e uscita, facciamo delle classi in app api/serializers.py  
+  
+Nel frontend app andremo ad usare Bootstrap, quindi inizializziamo il progetto con `npm init -y` e poi installiamo `npm install bootstrap@5`. npm andra' a gestire tutti i mobuli e ci permettera anche di installarne altri.  
+Babel utile per rendere il codice compatibile con piu' browsers.  
+
+Avremo una struttura del genere:
+```
+project/
+│
+├── node_modules/        (cartella generata da npm, contiene le dipendenze)
+│
+├── templates/           (cartella template cosi django trova l'index.html)
+│   ├── index.html       (pagina HTML principale del tuo progetto)
+│   └── assets/          (cartella per risorse statiche come immagini, font, ecc.)
+│
+├── src/                 (cartella sorgente del tuo progetto)
+│   ├── css/             (cartella per i tuoi file CSS)
+│   │   └── style.css    (eventuale file CSS personalizzato)
+│   │
+│   ├── js/              (cartella per i tuoi file JavaScript)
+│   │   └── script.js    (eventuale file JavaScript personalizzato)
+│   │
+│   └── scss/            (cartella per i tuoi file SCSS, se usi Sass)
+│       └── style.scss   (eventuale file SCSS personalizzato)
+│
+├── package.json         (file di configurazione npm)
+└── package-lock.json    (file di blocco delle versioni npm)
 ```

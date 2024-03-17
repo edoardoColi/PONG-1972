@@ -21,5 +21,5 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),        #To create a superuser (admin) account in Django use "python manage.py createsuperuser"
     path('api/', include('api.urls')),      #Qualsiasi url con api/... viene mandato a api app
-    path('test/', include('test.urls')),     #Qualsiasi url con test/... viene mandato a test app
+    path('', include('frontend.urls')),     #Tutto il resto al frontend
 ]
