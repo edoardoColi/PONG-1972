@@ -16,18 +16,20 @@ def redirect_to_account(request):
     return render(request, "client/register.html", {"form":form})
 
 def user_page(request, name):
-    my_vars = {"name":name}       #qui ci posso mettere anche tutto un oggetto e me lo ritrovo accessibile nel http e posso usarlo direttamente li
+    return render(request, "client/userPage.html")
+    # my_vars = {"name":name}       #qui ci posso mettere anche tutto un oggetto e me lo ritrovo accessibile nel http e posso usarlo direttamente li
 
-    html_response = """
-    <html>
-    <head><title>Home Page</title></head>
-    <body>
-    <h1>Ciao {name} - default</h1>
-    </body>
-    </html>
-    """.format(**my_vars)
+    # html_response = """
+    # <html>
+    # <head><title>Home Page</title></head>
+    # <body>
+    # <h1>Ciao {name} - default</h1>
+    # <a href="{% url 'logout' %}">Logout now</a>
+    # </body>
+    # </html>
+    # """.format(**my_vars)
 
-    return HttpResponse(html_response)
+    # return HttpResponse(html_response)
 
 def test_page(request):
     html_response = """

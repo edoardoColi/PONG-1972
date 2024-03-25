@@ -1,0 +1,15 @@
+{% extends "generic/base.html" %}
+
+{% block title %}Utente{% endblock title %}
+
+{% block content %}
+    <form method="POST" class="form-group">
+        {% csrf_token %}
+        <p>Bravo hai fatto il login</p>
+        <a href="{% url 'logout' %}">LogOut now</a>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Logout</button>
+        </form>        
+    </form>
+{% endblock content %}
