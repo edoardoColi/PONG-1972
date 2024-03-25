@@ -38,9 +38,9 @@ I progetti Django sono organizzati in più app, ognuna delle quali gestisce un a
 
 Andremo a creare le seguenti app all'interno per la gestione dei vari componenti
 ```
-$ docker-compose run web django-admin startapp api
+$ docker-compose run web django-admin startapp <nome app>
 ```
-poi dobbiamo aggiungerle l'app al progetto mettendo in *settings.py*, nel parametro INSTALLED_APPS `\<name\>.apps.\<name class in apps.py\>`
+poi dobbiamo aggiungerle l'app al progetto mettendo in *settings.py*, nel parametro INSTALLED_APPS `<name>.apps.<name class in apps.py>`
 
 # Models in app
 Vogliamo avere views piccole e la maggior parte della logica in models.py. I modelli sono astrazioni/regole dentro django per tabelle nel database.
@@ -52,32 +52,45 @@ $ docker-compose run web python manage.py makemigrations
 $ docker-compose run web python manage.py migrate
 ```
 # Workflow
-Per gestire il database mettiamo modelli in app api/models.py  
-Per le risposte in base agli endpoint facciamo delle classi in app api/views.py  
-Che utilizzeranno dei serializer per validare e gestire i dati in ingresso e uscita, facciamo delle classi in app api/serializers.py  
+Per gestire il database mettiamo modelli in app *app_name/models.py*  
+Per le risposte in base agli endpoint facciamo delle classi in app *app_name/views.py*  
+Che utilizzeranno dei serializer per validare e gestire i dati in ingresso e uscita, facciamo delle classi in app *app_name/serializers.py*  
   
 Nel frontend app andremo ad usare Bootstrap, quindi inizializziamo il progetto con `npm init -y` e poi installiamo `npm install bootstrap@5`. npm andra' a gestire tutti i mobuli e ci permettera anche di installarne altri.  
 Babel utile per rendere il codice compatibile con piu' browsers.  
 Avremo una struttura del genere:
 ```
-project/
+project_name/
 │
-├── node_modules/        (cartella generata da npm, contiene le dipendenze)
+├── manage.py
+├── static/
+│   └── ...
 │
-├── templates/           (cartella template cosi django trova l'index.html)
-│   ├── index.html       (pagina HTML principale del tuo progetto)
-│   └── assets/          (cartella per risorse statiche come immagini, font, ecc.)
+├── project_name/
+│   ├── __init__.py
+│   ├── asgi.py
+│   ├── settings.py
+│   ├── urls.py
+│   └── wsgi.py
 │
-├── src/                 (cartella sorgente del tuo progetto)
-│   ├── css/             (cartella per i tuoi file CSS)
-│   │   └── style.css    (eventuale file CSS personalizzato)
-│   │
-│   ├── js/              (cartella per i tuoi file JavaScript)
-│   │   └── script.js    (eventuale file JavaScript personalizzato)
-│   │
-│   └── scss/            (cartella per i tuoi file SCSS, se usi Sass)
-│       └── style.scss   (eventuale file SCSS personalizzato)
-│
-├── package.json         (file di configurazione npm)
-└── package-lock.json    (file di blocco delle versioni npm)
+└── app_name/
+    ├── migrations/
+    │   └── ...
+    ├── node_modules/                   (cartella generata da npm, contiene le dipendenze)
+    │   └── ...
+    ├── static/
+    │   └── ...
+    ├── templates/
+    │   └── app_name/
+    │       ├── base.html
+    │       └── extension_page.html     (per sfruttare la template inheritance con base.html)
+    ├── __init__.py
+    ├── admin.py
+    ├── apps.py
+    ├── models.py
+    ├── package.json                    (file di configurazione npm)
+    ├── package-lock.json               (file di blocco delle versioni npm)
+    ├── tests.py
+    ├── urls.py
+    └── views.py
 ```

@@ -1,0 +1,21 @@
+<html>
+<head>
+
+    <title>La tua area utente {% block title %}{% endblock title %}</title>
+</head>
+
+<body>
+<p>Template di base (User Page)</p>
+<p>ok ma se voglio mostrare cose che mi sono passate da view (quelle in {}, il dizionario) uso:</p>
+<p>{{name}}</p>
+<p>se voglio dividere le cose da mostrare, tipo user senza numero(non il mio caso) use block content cosi:</p>
+    <div id="content", name="content">
+    {% block content%}
+    {% endblock content %}
+    </div>
+<p>facendo cosi posso tipo modificare il tamplate di base nell html extender (questo mi interessa)</p>
+<p>facendo lo stesso blocco dila mi mette totto al posto di quello nel template, posso usarlo dove voglio cambiano il nome del blocco chiaramente</p>
+    
+</body>
+
+</html>
