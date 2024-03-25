@@ -17,9 +17,11 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 
-# Qui abbiamo come viene diviso il "traffico" degli url per esere smistato alle varie applicazioni
+# How the URL "traffic" is sent to be dispatched to various applications
 urlpatterns = [
     path('admin/', admin.site.urls),        #To create a superuser (admin) account in Django use "python manage.py createsuperuser"
-    path('api/', include('api.urls')),      #Qualsiasi url con api/... viene mandato a api app
-    path('', include('frontend.urls')),     #Tutto il resto al frontend
+    path('user/', include('client.urls')),
+    # path('api/', include('api.urls')),
+    path('games/pong/', include('pong.urls')),
+    path('', include('generic.urls')),
 ]

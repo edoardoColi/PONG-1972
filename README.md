@@ -88,9 +88,17 @@ project_name/
     ├── admin.py
     ├── apps.py
     ├── models.py
+    ├── forms.py                        (file per personalizzare i form, come quello utente)
     ├── package.json                    (file di configurazione npm)
     ├── package-lock.json               (file di blocco delle versioni npm)
     ├── tests.py
     ├── urls.py
     └── views.py
 ```
+# Templates
+Per avere delle pagine html da personalizzare possiamo creare dei template che poi vengono estesi. Possiamo anche usare template di un applicazione estendendoli in un altra applicazione, e' importante rispettare i nomi delle directory e specificare il come dell'app quando si estendono.  
+
+Per aggiungere Bootstrap possiamo seguire le istruzioni sul loro sito [link](https://getbootstrap.com/docs/5.3/getting-started/introduction/). Da li possiamo poi prendere lo style e i vari componenti da inserire all'interno del nostro. Se inseriamo Bootstrap nel template possiamo poi usarlo dell'expander direttamente, che fa comodo.
+
+# Form
+Il form principale/primario e' quello per la registrazione utenti. Django ha gia qualcosa di pronto, che contiene nome_utente e password. Se vogliamo estenderlo con altri campi dobbiamo creare il file forms.py con all'interno una classe che estende il predefinito user di Django.

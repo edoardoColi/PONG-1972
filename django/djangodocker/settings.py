@@ -27,8 +27,7 @@ SECRET_KEY = 'django-insecure-lq+h^c2hov49k4ft&fzpe&-arw^!h1c_3_^0ur7=8elj93u0-b
 DEBUG = True
 
 # Get the environment variable DJANGO_ALLOWED_HOSTS or use default value
-allowed_hosts = os.environ.get("DJANGO_ALLOWED_HOSTS", "")
-
+allowed_hosts = os.environ.get("DJANGO_ALLOWED_HOSTS", "") 
 # Convert the string of allowed hosts into a list
 ALLOWED_HOSTS = allowed_hosts.split()
 
@@ -42,8 +41,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'api.apps.ApiConfig',
-    'frontend.apps.FrontendConfig',
+    # 'api.apps.ApiConfig',
+    # 'frontend.apps.FrontendConfig',
+    'client.apps.ClientConfig',
+    'pong.apps.PongConfig',
+    'generic.apps.GenericConfig',
 ]
 
 MIDDLEWARE = [
@@ -135,3 +137,6 @@ STATICFILES_DIRS = [
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = "/user/"
+# LOGOUT_REDIRECT_URL = "/"
