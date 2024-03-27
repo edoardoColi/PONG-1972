@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.urls import reverse
-from .forms import CustomUserCreationForm
+# from .forms import CustomUserCreationForm
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import logout
 from django.contrib import messages #TODO
 from django.views.decorators.csrf import csrf_protect
@@ -12,7 +13,7 @@ def register_page(request):
         # magari aggiungere un messaggio pop-up che dice che sei gia loggato con messages (importato)
         return redirect('/user/'+request.user.username+'/')
     if request.method == "POST":
-        form = CustomUserCreationForm(request.POST)
+        form = UserCreationForm(request.POST)
         if form.is_valid():
             form.save()
             return redirect(reverse('login'))
@@ -20,7 +21,7 @@ def register_page(request):
         #     return render(request, "generics/register.html", {"form":form})
         # retrieves the URL associated with the view name
     else:
-        form = CustomUserCreationForm()
+        form = UserCreationForm()
     return render(request, "generics/register.html", {"form":form})
 
 @csrf_protect    
