@@ -23,7 +23,7 @@ status:
 
 gitadd: clean
 	sudo chown -R imacchina:imacchina *
-#	git add .
+	git add .
 
 # Define a help target to display available Makefile targets
 help:
