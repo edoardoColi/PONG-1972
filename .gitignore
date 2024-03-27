@@ -1,0 +1,7 @@
+# Ignore the .git directory itself
+.git
+
+# Include .env and .dockerignore files
+!.env
+!**.dockerignore
+!.gitignore

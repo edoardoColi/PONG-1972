@@ -1,0 +1,8 @@
+{% extends "generics/homelike.html" %}
+
+{% block title %}Profile{% endblock title %}
+
+{% block content %}
+    <h1>This is the profile page of {{name}}, not your({{client}})</h1>
+    <p><a href="{% url 'home' %}">Home</a></p>
+{% endblock content %}

@@ -1,0 +1,6 @@
+# Django is a high-level Python web framework that encourages rapid development and clean, pragmatic design.
+Django>=4.2
+# Django REST Framework is a powerful and flexible toolkit for building Web APIs in Django.
+djangorestframework>=3.0
+# Psycopg is a PostgreSQL adapter for Python.
+psycopg2-binary>=2.9
