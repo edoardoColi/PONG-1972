@@ -1,0 +1,19 @@
+{% extends "generic/base.html" %}
+
+{% block title %}Logout{% endblock title %}
+
+{% block content %}
+    ciao logout
+    {% if user.is_authenticated %}
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <a href="/user/" onclick="this.parentNode.submit()">Log via</a>
+    </form>
+    {% endif %}
+
+    <form action="{% url 'logout' %}" method="post">
+        {% csrf_token %}
+        <button type="submit">Logout</button>
+    </form>        
+
+{% endblock content %}

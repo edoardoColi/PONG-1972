@@ -140,3 +140,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 LOGIN_REDIRECT_URL = "/user/"
 # LOGOUT_REDIRECT_URL = "/"
+
+# Tempo di durata dei cookie (qui sotto 15 giorni)
+SESSION_COOKIE_AGE = 60 * 60 * 24 * 15

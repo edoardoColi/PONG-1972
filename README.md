@@ -3,6 +3,8 @@ Here are some general [references](https://www.atariarchives.org/bcc1/showpage.p
 # Initial setup Django + PostgreSQL
 [Link di riferimento](https://testdriven.io/blog/dockerizing-django-with-postgres-gunicorn-and-nginx/)  
 
+[Sicurity purpose](https://docs.djangoproject.com/en/5.0/topics/security/)
+
 Dati i file docker-compose.yml, .env, django/requirements.txt, django/Dockerfile
 ```
 # The command that will be executed inside the "web" service container. It's a  Django command (django-admin startproject) used to create a new Django project.  The argument djangodockertest is the name of the project being created, and the . specifies the current directory as the location where the project files will be created.
@@ -51,6 +53,41 @@ $ docker-compose run web python manage.py makemigrations
 
 $ docker-compose run web python manage.py migrate
 ```
+
+# Form
+Il form principale/primario e' quello per la registrazione utenti. Django ha gia qualcosa di pronto, che contiene nome_utente e password. Se vogliamo estenderlo con altri campi dobbiamo creare il file forms.py con all'interno una classe che estende il predefinito user di Django.  
+Anche qui facciamo
+```
+$ docker-compose run web python manage.py makemigrations
+# Sara mostrato che e' stato aggiunto un modello con il nome che abbiamo dato
+
+$ docker-compose run web python manage.py migrate
+```
+se cambiamo dei dati, tipo aggiungere nuovi campi agli utenti
+
+# Database access
+Per vedere i dati si dovrebbe poter utilizzare l'interfaccia di admin gia' presente, altrimenti possiamo usare
+```
+docker exec -it nome_db bash
+
+# Internamente usiamo:  (nomi in .env file)
+psql -U user_name -d db_name
+\dt     # Per avere le tabelle disponibili nel database
+SELECT * FROM nome_tabella;      # Importante il ';' alla fine
+```
+come parametri base dell'utente in postgress database abbiamo:  
+- id                (by Database- int(automatically inserted))
+- password          (by User- required string hash)
+- last_login        (by User- time(automatically inserted))
+- is_superuser      (by User- bool(false by default))
+- username          (by User- required string)
+- first_name        (by User- optional string)
+- last_name         (by User- optional string)
+- email             (by User- optional email)
+- is_staff          (by User- bool(false by default))
+- is_active         (by User- bool(true by default))
+- date_joined       (by User- time(automatically inserted))
+
 # Workflow
 Per gestire il database mettiamo modelli in app *app_name/models.py*  
 Per le risposte in base agli endpoint facciamo delle classi in app *app_name/views.py*  
@@ -99,6 +136,3 @@ project_name/
 Per avere delle pagine html da personalizzare possiamo creare dei template che poi vengono estesi. Possiamo anche usare template di un applicazione estendendoli in un altra applicazione, e' importante rispettare i nomi delle directory e specificare il come dell'app quando si estendono.  
 
 Per aggiungere Bootstrap possiamo seguire le istruzioni sul loro sito [link](https://getbootstrap.com/docs/5.3/getting-started/introduction/). Da li possiamo poi prendere lo style e i vari componenti da inserire all'interno del nostro. Se inseriamo Bootstrap nel template possiamo poi usarlo dell'expander direttamente, che fa comodo.
-
-# Form
-Il form principale/primario e' quello per la registrazione utenti. Django ha gia qualcosa di pronto, che contiene nome_utente e password. Se vogliamo estenderlo con altri campi dobbiamo creare il file forms.py con all'interno una classe che estende il predefinito user di Django.
